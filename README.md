@@ -39,3 +39,11 @@ No se pudo ver el mensaje porque la instruccion de imprimir el texto, esta despu
   
 - ¿Cuántas veces se ejecuta el código en el case Task1States::INIT?
 En el código proporcionado, el código dentro del caso `Task1States::INIT` se ejecuta una vez al inicio del programa,posteriormente, se cambia al estado  `Task1States::WAIT_TIMEOUT`, y se queda en bucle en ese estado.
+
+
+## EJERCICIO 7
+Observa la función millis(); ¿Para qué sirve? Recuerda que puedes buscar en Internet.
+
+La funcion millis(); sirve para devolver el numero de milisegundos transcurridos desde que el programa comienza a ejecutarse, es útil para medir el tiempo entre eventos, realizar acciones periódicas o implementar temporizadores en programas para plataformas Arduino.
+
+## EJERCICIO 8

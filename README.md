@@ -47,3 +47,149 @@ Observa la función millis(); ¿Para qué sirve? Recuerda que puedes buscar en I
 La funcion millis(); sirve para devolver el numero de milisegundos transcurridos desde que el programa comienza a ejecutarse, es útil para medir el tiempo entre eventos, realizar acciones periódicas o implementar temporizadores en programas para plataformas Arduino.
 
 ## EJERCICIO 8
+```
+void task1()
+{
+    // Definición de estados y variable de estado
+    enum class Task1States
+    {
+        INIT,
+        WAIT_TIMEOUT1,
+        WAIT_TIMEOUT2,
+        WAIT_TIMEOUT3
+    };
+    static Task1States task1State = Task1States::INIT;
+
+    // Definición de variables static (conservan su valor entre llamadas a task1)
+    static uint32_t lastTime = 0;
+
+    // Constantes
+    constexpr uint32_t INTERVAL1 = 1000;
+    constexpr uint32_t INTERVAL2 = 2000;
+    constexpr uint32_t INTERVAL3 = 3000;
+
+    // MÁQUINA de ESTADOS
+    switch (task1State)
+    {
+    case Task1States::INIT:
+    {
+        // Acciones:
+        Serial.begin(115200);
+
+        // Garantiza los valores iniciales para el siguiente estado.
+        lastTime = millis();
+        task1State = Task1States::WAIT_TIMEOUT1;
+
+        break;
+    }
+    case Task1States::WAIT_TIMEOUT1:
+    {
+        uint32_t currentTime = millis();
+
+        // Evento
+        if ((currentTime - lastTime) >= INTERVAL1)
+        {
+            // Acciones:
+            lastTime = currentTime;
+            Serial.print(currentTime);
+            Serial.print("hola este es el primer mensaje");
+            Serial.print('\n');
+            task1State = Task1States::WAIT_TIMEOUT2;
+        }
+        break;
+    }
+
+
+    case Task1States::WAIT_TIMEOUT2:
+    {
+
+      uint32_t currentTime = millis();
+  
+          // Evento
+          if ((currentTime - lastTime) >= INTERVAL2)
+          {
+              // Acciones:
+              lastTime = currentTime;
+              Serial.print(currentTime);
+              Serial.print("hola este es el segundo mensaje");
+              Serial.print('\n');
+              task1State = Task1States::WAIT_TIMEOUT3;
+          }
+          break;
+    }
+      
+
+
+
+    case Task1States::WAIT_TIMEOUT3:
+    {
+
+      uint32_t currentTime = millis();
+  
+          // Evento
+          if ((currentTime - lastTime) >= INTERVAL3)
+          {
+              // Acciones:
+              lastTime = currentTime;
+              Serial.print(currentTime);
+              Serial.print("hola este es el 3 mensaje");
+              Serial.print('\n');
+              task1State = Task1States::WAIT_TIMEOUT1;
+              
+              
+          }
+          break;
+      
+    }
+    
+    
+    default:
+    {
+        Serial.println("Error");
+    }
+    }
+}
+
+void setup()
+{
+    task1();
+}
+
+void loop()
+{
+    task1();
+}
+
+```
+- ¿Cuáles son los estados del programa?
+INIT: Estado inicial donde se configuran las condiciones iniciales y se ejecutan acciones de inicio, como la inicialización de la comunicación serial y la configuración de valores iniciales.
+
+WAIT_TIMEOUT1: Estado en el que se espera que pase un intervalo de tiempo INTERVAL1 antes de realizar ciertas acciones y transicionar al siguiente estado.
+
+WAIT_TIMEOUT2: Similar a WAIT_TIMEOUT1, pero con un intervalo de tiempo INTERVAL2.
+
+WAIT_TIMEOUT3: Similar a WAIT_TIMEOUT1 y WAIT_TIMEOUT2, pero con un intervalo de tiempo INTERVAL3.
+  
+- ¿Cuáles son los eventos?
+Tiempo transcurrido (timeout): El evento que desencadena la transición de un estado a otro es el tiempo transcurrido desde la última vez que se realizó cierta acción (lastTime). Este evento se verifica en cada estado y está basado en comparaciones de tiempo utilizando la función millis().
+  
+- ¿Cuáles son las acciones?
+  INIT:Inicialización de la comunicación serial.
+       Establecimiento de valores iniciales (lastTime).
+       Transición al estado WAIT_TIMEOUT1.
+  WAIT_TIMEOUT1:
+       Verificación del evento de tiempo transcurrido (INTERVAL1).
+       Impresión de un mensaje en la comunicación serial.
+       Actualización del tiempo de referencia (lastTime).
+       Transición al estado WAIT_TIMEOUT2.
+WAIT_TIMEOUT2:
+      Verificación del evento de tiempo transcurrido (INTERVAL2).
+      Impresión de otro mensaje en la comunicación serial.
+      Actualización del tiempo de referencia (lastTime).
+      Transición al estado WAIT_TIMEOUT3.
+WAIT_TIMEOUT3:
+      Verificación del evento de tiempo transcurrido (INTERVAL3).
+      Impresión de un tercer mensaje en la comunicación serial.
+      Actualización del tiempo de referencia (lastTime).
+      Transición al estado WAIT_TIMEOUT1 para reiniciar el ciclo.
+  

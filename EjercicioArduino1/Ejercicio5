@@ -1,0 +1,14 @@
+## EJERCICIO 5
+Una Raspberry Pi es un pequeño ordenador de placa única (SBC, por sus siglas en inglés) desarrollado por la Fundación Raspberry Pi, aunque parezca una placa arduino, la Raspberry Pi es se considera mas más potente y versátil, ya que funciona como un microordenador y requiere un sistema operativo para ejecutar una variedad de proyectos complejos.
+
+CARACTERISTICAS:
+- Microcontrolador RP2040: La Raspberry Pi Pico está impulsada por el microcontrolador RP2040, un componente dual-core ARM Cortex-M0+ diseñado por Raspberry Pi. Este microcontrolador se enfoca en aplicaciones embebidas y de bajo consumo.
+-Memoria RAM: Con 264 KB de RAM, la Pico puede almacenar datos temporales y ejecutar programas de manera eficiente.
+Pines GPIO (Entrada/Salida de Propósito General): Con 26 pines GPIO, la Pico facilita la conexión a diversos dispositivos y sensores para proyectos electrónicos.
+-Entradas/Salidas Analógicas: Ofrece 3 entradas/salidas analógicas (pines ADC), que permite la lectura de señales analógicas útiles en aplicaciones como sensores de luz o temperatura.
+-Conectividad: no cuenta con conectividad incorporada, como Wi-Fi o Bluetooth, pero se pueden agregar módulos externos para habilitar estas funciones.
+-Programación: Compatible con diversos lenguajes, incluyendo MicroPython y C/C++, a través del SDK de Raspberry Pi Pico. Además, es compatible con herramientas populares como Thonny y entornos de desarrollo integrado (IDE) de C/C++.
+-Relación Calidad-Precio: es Conocida por su bajo costo en comparación con otras placas de desarrollo similares, la Raspberry Pi Pico es atractiva para proyectos que requieren un microcontrolador potente y barato.
+-Soporte de Comunidad: Al igual que otros productos de Raspberry Pi, la Pico se beneficia de una comunidad activa en línea, que comparte recursos como tutoriales, proyectos y foros de discusión.
+Otras Características Relevantes:
+-Adaptador USB incorporado: La Pico cuenta con un adaptador USB incorporado, simplificando la conexión, la programación y la alimentación.

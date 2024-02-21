@@ -1,0 +1,4 @@
+## EJERCICIO 7
+Observa la función millis(); ¿Para qué sirve? Recuerda que puedes buscar en Internet.
+
+La funcion millis(); sirve para devolver el numero de milisegundos transcurridos desde que el programa comienza a ejecutarse, es útil para medir el tiempo entre eventos, realizar acciones periódicas o implementar temporizadores en programas para plataformas Arduino.

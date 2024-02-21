@@ -1,0 +1,12 @@
+
+##EJERCICIO 6
+- ¿Cómo se ejecuta este programa?
+El programa sigue un patrón de máquina de estados, realizando diversas acciones dependiendo del estado actual, y esto se repite en un bucle principal.
+El programa comienza estableciendo la comunicación serial y configurando un estado inicial llamado INIT, entrando en un bucle principal (loop()) donde llama repetidamente a la función task1().
+La función task1() realiza acciones diferentes según el estado actual. En el estado INIT, inicia la comunicación serial y luego cambia al estado WAIT_TIMEOUT, en el que verifica si ha pasado un cierto intervalo de tiempo y realiza acciones en consecuencia.
+  
+- Pudiste ver este mensaje: `Serial.print("Task1States::WAIT_TIMEOUT\n");`. ¿Por qué crees que ocurre esto?
+No se pudo ver el mensaje porque la instruccion de imprimir el texto, esta despues de la instruccion del cambio de estado de maquina, por lo que ola maquina cambia de estado despues de imprimir el mensaje, pero agregando un "DELAY" y moviendo la instruccion arriba del cambio de estado permite la microcontrolador procesar e imprimir el mensaje correctamente.
+  
+- ¿Cuántas veces se ejecuta el código en el case Task1States::INIT?
+En el código proporcionado, el código dentro del caso `Task1States::INIT` se ejecuta una vez al inicio del programa,posteriormente, se cambia al estado  `Task1States::WAIT_TIMEOUT`, y se queda en bucle en ese estado.

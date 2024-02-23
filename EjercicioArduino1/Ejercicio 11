@@ -1,0 +1,15 @@
+Ejercicio 11:
+realiza algunas pruebas
+Analiza el programa. ¿Por qué enviaste la letra con el botón send? ¿Qué evento verifica si ha llegado algo por el puerto serial?
+
+if (Serial.available() > 0)
+
+Analiza los números que se ven debajo de las letras. Nota que luego de la r, abajo, hay un número. ¿Qué es ese número?
+
+¿Qué relación encuentras entre las letras y los números?
+
+que cada letra corresponde a la posicion numerica del numero , es decir "6f", la f esta en la posicion numero 6 del abecedario
+
+¿Qué es el 0a al final del mensaje y para qué crees que sirva?
+
+El "0a" al final del mensaje es un valor hexadecimal que representa el 10, 0a (10) indica que después de la palabra "computador", debería comenzar una nueva línea en el mensaje.

@@ -1,0 +1,17 @@
+¿Por qué es necesario declarar rxData static? y si no es static ¿Qué pasa? 
+Con static:
+Al ser estático, rxData mantiene su valor entre llamadas a la función task1(). Esto significa que los datos almacenados en rxData no se reinician a cero cada vez que se llama a la función task1(). Si, por ejemplo, la función es llamada repetidamente en el bucle principal (loop()), rxData retiene su estado entre llamadas, lo que es crucial para acumular los datos recibidos hasta que se complete un conjunto de 5 bytes. Sin static:
+
+Si rxData no se declara como static, se comportará como una variable local dentro de la función task1(). Esto significa que cada vez que se llama a la función, se crea una nueva instancia de rxData y su contenido se reinicia. Si, por ejemplo, estás esperando recibir 5 bytes y acumularlos en rxData, sin el calificador static, cada vez que se llame a la función task1(), rxData se reiniciará, y no se acumularán los datos como se espera.
+
+dataCounter se define static y se inicializa en 0. Cada vez que se ingrese a la función loop dataCounter se inicializa a 0? ¿Por qué es necesario declararlo static?
+
+el funcionamiento es similar a rxData, cada vez que ingresa a el loop no se inizializa en 0, dataCounter conserva su valor entre llamadas de funiones debido a que se declara static, esto sirve para poder llevar seguimiento de la cantidad de datos ingresados
+
+Finalmente, la constante 0x30 en (pData[i] - 0x30) ¿Por qué es necesaria?
+
+La expresión pData[i] - 0x30 se utiliza para convertir un carácter numérico ASCII en su equivalente numérico. En el conjunto de caracteres ASCII, los dígitos numéricos del 0 al 9 tienen códigos ASCII consecutivos desde 0x30 hasta 0x39. Al restar 0x30, se realiza una conversión para obtener el valor numérico correspondiente.
+
+Por ejemplo:
+
+El carácter '0' tiene un código ASCII de 0x30. Restar 0x30 resultará en 0. El carácter '1' tiene un código ASCII de 0x31. Restar 0x30 resultará en 1. El carácter '2' tiene un código ASCII de 0x32. Restar 0x30 resultará en 2. Y así sucesivamente.

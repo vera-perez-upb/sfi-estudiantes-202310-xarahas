@@ -1,0 +1,32 @@
+Ejercicio 16
+Qué crees que ocurre cuando:
+
+¿Qué pasa cuando hago un Serial.available()?
+
+Verifico si la placa recibio algun dato.
+
+¿Qué pasa cuando hago un Serial.read()?
+
+Leo el dato que recibio la placa.
+
+¿Qué pasa cuando hago un Serial.read() y no hay nada en el buffer de recepción?
+
+Cuando ejecutas Serial.read() y no hay nada en el buffer de recepción (Serial.available() devuelve 0), 
+la función Serial.read() devuelve -1. Esta es una indicación de que no se ha recibido ningún dato.
+
+Un patrón común al trabajar con el puerto serial es este:
+
+*if*(Serial.available() > 0){ int dataRx = Serial.read() }
+
+¿Cuántos datos lee Serial.read()?
+
+La función Serial.read() en Arduino lee un solo byte de datos del buffer de recepción serie. 
+En términos de tipo de datos, devuelve un valor de tipo int, que representa el byte leído como un valor entre 0 y 255.
+
+¿Y si quiero leer más de un dato? No olvides que no se pueden leer más datos de los disponibles en el buffer de recepción porque no hay más datos que los que tenga allí.
+
+Se podria utilizar un arreglo como en el codigo del punto 15
+
+¿Qué pasa si te envían datos por serial y se te olvida llamar Serial.read()?
+
+Si se te olvida llamar a Serial.read() después de verificar que hay datos disponibles (Serial.available() > 0) en la función task1(), los datos que se envían por el puerto serie no se leerán y se acumularán en el búfer de recepción serial, si la comunicación serial está configurada para esperar la recepción de ciertos datos antes de continuar con la ejecución del programa, el código puede quedar bloqueado indefinidamente en el estado WAIT_DATA, ya que nunca se lee y procesa correctamente la información. Ademas, Si el código asume que siempre habrá datos disponibles y no se implementa una lógica adecuada para manejar la falta de datos, el programa puede comportarse de manera impredecible o generar errores.

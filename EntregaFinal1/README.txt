@@ -1,6 +1,6 @@
 enum class Task1States {
     CONFIG,
-    WAIT_DATA
+    PROCESO
 };
 
 static Task1States task1State = Task1States::CONFIG;
@@ -42,15 +42,37 @@ void task1()
             else
             {
                 Serial.println("Listo");
-                task1State = Task1States::WAIT_DATA;
+                task1State = Task1States::PROCESO;
             }
         }
 
         break;
     }
 
-    case Task1States::WAIT_DATA:
+    case Task1States::PROCESO:
     {
+
+      
+      static uint32_t lastTime = TiempoParaAbrir;
+      lastTime--;
+      delay(1000);
+
+      
+      
+       if (lastTime != 0)
+       {
+       
+              Serial.println(lastTime);
+ 
+       }
+       else 
+       {
+        Serial.println("se acabo el tiempo");
+       }
+
+
+
+      
         // Evento 1:
 
         break;

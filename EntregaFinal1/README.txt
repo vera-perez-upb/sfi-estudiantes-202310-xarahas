@@ -1,10 +1,17 @@
- enum class Task1States {
+#TRABAJO FINAL U1
+#Diagrama de estados 
+
+https://web.whatsapp.com/765d77f4-8c5e-4136-a30d-19d8d6bf36bd 
+
+```
+enum class Task1States {
+    MENSAJEINICIAL,
     CONFIG,
     PROCESO,
     FINAL
 };
 
-static Task1States task1State = Task1States::CONFIG;
+static Task1States task1State = Task1States::MENSAJEINICIAL;
 static uint8_t TiempoParaAbrir = 5;
 static uint32_t lastTime;
 
@@ -12,15 +19,25 @@ void task1()
 {
     switch (task1State)
     {
+      case Task1States::MENSAJEINICIAL:
+    {
+
+              Serial.print("CONFIG - Tiempo para abrir la boveda: ");
+              Serial.println(TiempoParaAbrir);
+              Serial.println("Oye soldado, los Disidentes del tiempo han tomado control de la central nuclear y planean activar la radiacion que destruira a toda la ciudad, despues de que varios agentes de nuestra resistencia murieron, te hemos asignado esta mision para que desactives la camara");
+                            Serial.println("debes desactivar la camara de radiacion que se abrira dentro de poco, para ello deberas ingresar una clave secreta compuesta por el formato C0000, si no logras decifrar la clave el mundo se destruira para siempre");
+                                            delay(1000);
+                              task1State = Task1States::CONFIG;
+
+             
+    
+    
+    }
     case Task1States::CONFIG:
     {
-        char TeclaRecibida;
+  
+      char TeclaRecibida;
 
-    
-              /*Serial.print("CONFIG - Tiempo para abrir la boveda: ");
-              Serial.println(TiempoParaAbrir);
-              Serial.println("Presiona S para aumentar la cantidad de segundos y A para disminuirla, Presiona L para aceptar los cambios");
-              */
 
 
 
@@ -33,12 +50,12 @@ void task1()
 
             if (TeclaRecibida != 'L')
             {
-                if (TeclaRecibida == 'S')
+                if (TeclaRecibida == 'S' & TiempoParaAbrir<40 )
                 {
                     TiempoParaAbrir++;
                     Serial.println("Tiempo para abrir la boveda: " + String(TiempoParaAbrir));
                 }
-                else if (TeclaRecibida == 'A')
+                else if (TeclaRecibida == 'B' & TiempoParaAbrir>1 )
                 {
                     TiempoParaAbrir--;
                     Serial.println("Tiempo para abrir la boveda: " + String(TiempoParaAbrir));
@@ -54,7 +71,7 @@ void task1()
         break;
     }
 
-   case Task1States::PROCESO:
+   case /O:
 {
     lastTime = TiempoParaAbrir;
 
@@ -86,7 +103,6 @@ void task1()
 
 
                 int enteredCode = atoi(code);
-
 
                 if (enteredCode == 1234)
                 {
@@ -123,7 +139,31 @@ void task1()
 
         TiempoParaAbrir = 5;
         lastTime = 0;
-        task1State = Task1States::CONFIG;
+        task1State = Task1States::MENSAJEINICIAL;
 
         break;
-    } 
+    }
+    
+
+    
+
+    default:
+    {
+        break;
+    }
+}
+}
+    
+
+
+void setup()
+{
+    task1();
+}
+
+void loop()
+{
+    task1();
+    // Aquí puedes agregar otras tareas que se ejecuten en el bucle principal si es necesario.
+}
+```
